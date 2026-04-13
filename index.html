@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║   TCHAKALA Amdane · Site Personnel                          ║
+  ║   Architecture modulaire — fichier HTML principal           ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║   STRUCTURE DES FICHIERS :                                  ║
+  ║   index.html        → Structure HTML (ce fichier)           ║
+  ║   css/global.css    → Variables, reset, utilitaires         ║
+  ║   css/nav.css       → Navigation                            ║
+  ║   css/sections.css  → Hero, à propos, outils, contact...    ║
+  ║   css/articles.css  → Grille & page article                 ║
+  ║   data/config.js    → ★ Tes infos personnelles              ║
+  ║   data/articles.js  → ★ Tes articles (ajouter ici)          ║
+  ║   data/fichiers.js  → ★ Tes outils Excel & ressources       ║
+  ║   js/app.js         → Logique & rendu dynamique             ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║   POUR MODIFIER TON SITE :                                  ║
+  ║   • Changer tes infos  → data/config.js                     ║
+  ║   • Ajouter un article → data/articles.js                   ║
+  ║   • Ajouter un outil   → data/fichiers.js                   ║
+  ╚══════════════════════════════════════════════════════════════╝
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO — rempli dynamiquement par data/config.js -->
+  <title>Amdane Tchakala · Ingénieur Génie Civil</title>
+  <meta name="description" content="">
+  <meta name="author" content="TCHAKALA Amdane">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph (aperçu sur WhatsApp, LinkedIn...) -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Amdane Tchakala · Ingénieur Génie Civil & Outils BTP">
+  <meta property="og:description" content="Feuilles de calcul Excel BTP, articles techniques, ressources gratuites.">
+  <meta property="og:locale"      content="fr_FR">
+
+  <!-- Sécurité -->
+  <meta http-equiv="X-Content-Type-Options"    content="nosniff">
+  <meta http-equiv="Referrer-Policy"           content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy"        content="camera=(), microphone=(), geolocation=()">
+
+  <!-- Feuilles de style modulaires -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/articles.css">
+</head>
+<body>
+
+  <!-- Barre de progression lecture -->
+  <div id="prog" role="progressbar" aria-label="Progression de lecture"></div>
+
+  <!-- Curseur personnalisé (vert néon, visible sur tout fond) -->
+  <div id="cur-pt"   aria-hidden="true"></div>
+  <div id="cur-ring" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+  <nav id="nav" role="navigation" aria-label="Navigation principale">
+    <a href="#hero" class="logo" aria-label="Accueil">
+      <span id="logo-txt">A. T.</span>
+      <span class="logo-dot" aria-hidden="true"></span>
+    </a>
+
+    <ul class="nav-ul" role="list">
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#outils">Outils Excel</a></li>
+      <li><a href="#articles">Articles</a></li>
+      <li><a href="#ressources">Ressources</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <a href="https://qbqtcogf.mychariow.shop"
+           target="_blank" rel="noopener noreferrer"
+           class="nav-cta"
+           data-chariow-link>Acheter →</a>
+      </li>
+    </ul>
+
+    <button class="burger" id="burger"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="m-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Menu mobile plein écran -->
+  <div id="m-menu" role="dialog" aria-label="Menu mobile" aria-modal="true">
+    <button class="m-close-btn" aria-label="Fermer le menu">✕</button>
+    <a href="#apropos">À propos</a>
+    <a href="#outils">Outils Excel</a>
+    <a href="#articles">Articles</a>
+    <a href="#ressources">Ressources</a>
+    <a href="#contact">Contact</a>
+    <a href="https://qbqtcogf.mychariow.shop"
+       target="_blank" rel="noopener noreferrer"
+       data-chariow-link>🛒 Boutique</a>
+  </div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════════
+         HERO — Première impression
+         Psychologie : qui je suis + ce que je fais en 3 secondes
+    ══════════════════════════════════════════════════════════ -->
+    <section id="hero" aria-label="Présentation principale">
+
+      <!-- Décoration géométrique type plan BTP -->
+      <svg class="hero-deco" width="300" height="300" viewBox="0 0 300 300"
+           fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="1" y="1" width="298" height="298" stroke="#C0BDB3"
+              stroke-width="1" stroke-dasharray="8 5"/>
+        <circle cx="150" cy="150" r="96" stroke="#C8DDD5" stroke-width="1"/>
+        <circle cx="150" cy="150" r="58" stroke="#C8DDD5"
+              stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="54" y1="150" x2="246" y2="150" stroke="#E4E2DA" stroke-width="1"/>
+        <line x1="150" y1="54" x2="150" y2="246" stroke="#E4E2DA" stroke-width="1"/>
+        <circle cx="150" cy="150" r="4" fill="#5A9E82"/>
+        <text x="158" y="52" font-family="JetBrains Mono,monospace"
+              font-size="7" fill="#C0BDB3">R=96</text>
+        <text x="252" y="153" font-family="JetBrains Mono,monospace"
+              font-size="7" fill="#C0BDB3">X</text>
+        <text x="153" y="258" font-family="JetBrains Mono,monospace"
+              font-size="7" fill="#C0BDB3">Y</text>
+        <rect x="100" y="100" width="100" height="100"
+              stroke="#E4E2DA" stroke-width="1" stroke-dasharray="3 3"/>
+      </svg>
+
+      <div class="hero-in">
+        <!-- Badge statut (rempli par config.js) -->
+        <div class="badge-statut">
+          <span class="badge-dot" aria-hidden="true"></span>
+          <span class="badge-statut-txt">Disponible · Génie Civil</span>
+        </div>
+
+        <!-- Nom (rempli par config.js) -->
+        <h1 class="hero-nom">
+          <em id="hero-prenom">Amdane</em><br>
+          <span id="hero-nom-famille">TCHAKALA</span>
+        </h1>
+
+        <!-- Accroche (remplie par config.js) -->
+        <p class="hero-accroche" id="hero-accroche">
+          <strong>Étudiant Ingénieur en Génie Civil</strong>
+        </p>
+
+        <div class="hero-cta">
+          <a href="#outils" class="btn-N">Voir mes outils Excel →</a>
+          <a href="#articles" class="btn-O">Lire mes articles</a>
+        </div>
+      </div>
+
+      <!-- Stats (remplies par config.js) -->
+      <div id="hero-stats" class="hero-stats" aria-label="Chiffres clés"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         À PROPOS
+    ══════════════════════════════════════════════════════════ -->
+    <section id="apropos" aria-labelledby="tit-apropos">
+
+      <!-- Photo -->
+      <div class="photo-wrap ap" aria-hidden="true">
+        <div class="photo-cadre">
+          <!--
+          POUR AJOUTER TA PHOTO :
+          1. Retire la div .photo-placeholder ci-dessous
+          2. Décommente la balise img
+          3. Mets le chemin de ta photo dans src=
+          -->
+          <div class="photo-placeholder">
+            <span>👤</span>
+            Votre photo ici
+          </div>
+          <!-- <img src="photo.jpg" alt="Amdane Tchakala — Ingénieur Génie Civil"
+                   style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1"> -->
+        </div>
+        <div class="photo-ombre"></div>
+        <div class="photo-badge">
+          <div class="pb-n">3+</div>
+          <div class="pb-l">Années de formation</div>
+        </div>
+      </div>
+
+      <!-- Contenu -->
+      <div>
+        <div class="etiq ap">À propos de moi</div>
+        <h2 class="ts ap d1" id="tit-apropos">
+          Bâtisseur de structures<br><em>&amp; d'outils numériques.</em>
+        </h2>
+        <!-- Bio remplie par config.js -->
+        <div id="bio"></div>
+        <!-- Compétences remplies par config.js -->
+        <div class="chips ap d4" id="chips" role="list" aria-label="Compétences"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         OUTILS EXCEL
+    ══════════════════════════════════════════════════════════ -->
+    <section id="outils" class="sec-g" aria-labelledby="tit-outils">
+      <div class="sec-header">
+        <div>
+          <div class="etiq ap">Portfolio · Outils Excel</div>
+          <h2 class="ts ap d1" id="tit-outils">
+            Feuilles de calcul<br><em>pour le BTP</em>
+          </h2>
+          <p class="st ap d2">
+            Outils Excel professionnels, documentés et testés —
+            pour gagner du temps sur le terrain et en bureau d'études.
+          </p>
+        </div>
+        <a href="https://qbqtcogf.mychariow.shop"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-O ap" data-chariow-link>
+          Toute la boutique →
+        </a>
+      </div>
+      <!-- Grille remplie par fichiers.js + app.js -->
+      <div id="grille-outils" class="grille-outils ap" role="list"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SERVICES — Section Neo-Futur
+    ══════════════════════════════════════════════════════════ -->
+    <section id="services" aria-labelledby="tit-srv">
+      <div class="srv-in">
+        <div class="etiq-n ap">Services · Sur Mesure</div>
+        <h2 class="ts-n ap d1" id="tit-srv">
+          Ce que je peux<br>faire pour <span>vous.</span>
+        </h2>
+        <p class="st-n ap d2">
+          Des outils sur commande, du conseil technique BTP,
+          et bientôt une formation complète Excel pour ingénieurs.
+        </p>
+        <!-- Grille remplie par config.js + app.js -->
+        <div id="grille-srv" class="grille-srv ap d3" role="list"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ARTICLES — Blog
+    ══════════════════════════════════════════════════════════ -->
+    <section id="articles" aria-labelledby="tit-art">
+      <div class="sec-header">
+        <div>
+          <div class="etiq ap">Blog · Articles Techniques</div>
+          <h2 class="ts ap d1" id="tit-art">
+            Réflexions<br><em>de terrain</em>
+          </h2>
+        </div>
+      </div>
+      <!-- Grille remplie par articles.js + app.js -->
+      <div id="grille-art" class="grille-art ap" role="list"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         RESSOURCES GRATUITES
+    ══════════════════════════════════════════════════════════ -->
+    <section id="ressources" class="sec-g" aria-labelledby="tit-res">
+      <div class="etiq ap">Ressources · Gratuites</div>
+      <h2 class="ts ap d1" id="tit-res">
+        Téléchargements<br><em>gratuits</em>
+      </h2>
+      <p class="st ap d2">
+        PDFs, fiches techniques, guides et modèles — disponibles
+        sur mon Google Drive, à télécharger librement.
+      </p>
+      <!-- Grille remplie par fichiers.js + app.js -->
+      <div id="grille-res" class="grille-res ap" role="list"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         CONTACT
+    ══════════════════════════════════════════════════════════ -->
+    <section id="contact" aria-labelledby="tit-contact">
+
+      <!-- Infos et liens -->
+      <div>
+        <div class="c-etiq">Contact</div>
+        <h2 class="c-t" id="tit-contact">Travaillons<br>ensemble.</h2>
+        <p class="c-s">
+          Une commande sur mesure, une question technique ou un partenariat ?
+          Réponse garantie en moins de 48h.
+        </p>
+
+        <div class="c-liens" role="list">
+
+          <a id="c-email" href="mailto:amdanetchakala2@gmail.com"
+             class="c-lien" role="listitem" aria-label="Envoyer un email">
+            <div>
+              <div class="c-ll">Email</div>
+              <div class="c-lv">amdanetchakala2@gmail.com</div>
+            </div>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a id="c-whatsapp"
+             href="https://wa.me/22870182109"
+             target="_blank" rel="noopener noreferrer"
+             class="c-lien" role="listitem" aria-label="Contacter via WhatsApp">
+            <div>
+              <div class="c-ll">WhatsApp</div>
+              <div class="c-lv">+228 70 18 21 09</div>
+            </div>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a id="c-linkedin"
+             href="https://www.linkedin.com/in/amdane-tchakala"
+             target="_blank" rel="noopener noreferrer"
+             class="c-lien" role="listitem" aria-label="Profil LinkedIn">
+            <div>
+              <div class="c-ll">LinkedIn</div>
+              <div class="c-lv">linkedin.com/in/amdane-tchakala</div>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a id="c-chariow"
+             href="https://qbqtcogf.mychariow.shop"
+             target="_blank" rel="noopener noreferrer"
+             class="c-lien" role="listitem"
+             style="border-color: rgba(31,209,122,.18)"
+             aria-label="Boutique Chariow">
+            <div>
+              <div class="c-ll">🛒 Boutique Chariow</div>
+              <div class="c-lv">qbqtcogf.mychariow.shop</div>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+        </div><!-- fin c-liens -->
+      </div>
+
+      <!-- Formulaire -->
+      <div>
+        <div class="form-t">Envoyer un message</div>
+        <div role="form" aria-label="Formulaire de contact">
+          <div class="fg">
+            <input type="text" id="f-nom"
+                   placeholder="Votre nom complet"
+                   autocomplete="name" maxlength="100"
+                   aria-label="Nom complet" aria-required="true">
+          </div>
+          <div class="fg">
+            <input type="email" id="f-email"
+                   placeholder="Votre adresse email"
+                   autocomplete="email" maxlength="150"
+                   aria-label="Adresse email" aria-required="true">
+          </div>
+          <div class="fg">
+            <!-- Options remplies par config.js -->
+            <select id="f-sujet" aria-label="Sujet" aria-required="true">
+              <option value="" disabled selected>Sujet de votre message</option>
+            </select>
+          </div>
+          <div class="fg">
+            <textarea id="f-msg"
+                      placeholder="Décrivez votre besoin en détail..."
+                      maxlength="2000"
+                      aria-label="Message" aria-required="true"></textarea>
+          </div>
+          <!-- Honeypot anti-spam — invisible pour les humains -->
+          <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none" aria-hidden="true">
+            <input type="text" id="f-hp" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <button class="btn-send" id="btn-send" type="button" onclick="sendForm()">
+            Envoyer le message →
+          </button>
+          <div id="f-msg-ret" role="alert" aria-live="polite"
+               style="margin-top:.7rem;font-size:.8rem;font-weight:500;display:none"></div>
+        </div>
+      </div>
+
+    </section><!-- fin #contact -->
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PAGE ARTICLE COMPLÈTE (overlay)
+       Générée dynamiquement par app.js
+  ══════════════════════════════════════════════════════════ -->
+  <div id="article-page" role="dialog" aria-modal="true" aria-label="Article">
+
+    <!-- Barre de navigation de l'article -->
+    <div class="art-page-nav">
+      <button class="art-back-btn" onclick="fermerArticle()" aria-label="Retour aux articles">
+        ← Retour
+      </button>
+      <div class="art-page-prog" role="progressbar" aria-label="Progression de lecture"></div>
+    </div>
+
+    <!-- Corps de l'article -->
+    <div class="art-page-body">
+      <div class="art-page-cat-txt art-page-cat"></div>
+      <h1 class="art-page-titre"></h1>
+      <div class="art-page-meta">
+        <span>📅 <span class="art-page-date"></span></span>
+        <span>⏱ <span class="art-page-temps"></span></span>
+        <span>✍️ <span class="art-page-auteur"></span></span>
+      </div>
+      <div class="art-page-cover"></div>
+      <div class="art-content"></div>
+      <div class="art-tags"></div>
+    </div>
+
+  </div><!-- fin #article-page -->
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="f-logo">Amdane<span>.</span></div>
+    <ul class="f-liens" role="list">
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#outils">Outils</a></li>
+      <li><a href="#articles">Articles</a></li>
+      <li><a href="https://qbqtcogf.mychariow.shop" target="_blank" rel="noopener noreferrer" id="f-chariow">Chariow ↗</a></li>
+      <li><a href="https://www.linkedin.com/in/amdane-tchakala" target="_blank" rel="noopener noreferrer" id="f-linkedin">LinkedIn ↗</a></li>
+    </ul>
+    <div class="f-copy">© 2025 TCHAKALA Amdane · Tous droits réservés</div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCRIPTS — dans l'ordre de dépendance
+  ══════════════════════════════════════════════════════════ -->
+  <!-- 1. Données (config, articles, fichiers) -->
+  <script src="data/config.js"></script>
+  <script src="data/articles.js"></script>
+  <script src="data/fichiers.js"></script>
+  <!-- 2. Application principale -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
